@@ -1,8 +1,8 @@
-package ru.freeomsk.springbootbootstrap.controller;
+package ru.kata.springbootbootstrap.controller;
 
-import ru.freeomsk.springbootbootstrap.model.User;
-import ru.freeomsk.springbootbootstrap.service.RoleService;
-import ru.freeomsk.springbootbootstrap.service.UserService;
+import ru.kata.springbootbootstrap.entity.User;
+import ru.kata.springbootbootstrap.service.RoleService;
+import ru.kata.springbootbootstrap.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -30,7 +30,7 @@ public class AdminController {
 
     @GetMapping("/admin")
     public String showAdminPage(@AuthenticationPrincipal User user, Model model) {
-        model.addAttribute("users", userService.getAllUsers());
+        model.addAttribute("users", userService.findByUsername(user.getUsername()));
         model.addAttribute("user", user);
         model.addAttribute("roles", roleService.getAllRoles());
         return "admin/adminPage";
@@ -45,7 +45,7 @@ public class AdminController {
 
     @PostMapping("/new")
     public String createUser(@ModelAttribute("user") User user) {
-        getUserRoles(user);
+        roleService.getAllRoles();
         userService.saveUser(user);
         return "redirect:/admin";
     }
@@ -53,20 +53,15 @@ public class AdminController {
     @PutMapping("/{id}/update")
     public String updateUser(@ModelAttribute("user") User user, Model model) {
         model.addAttribute("roles", roleService.getAllRoles());
-        getUserRoles(user);
-        userService.updateUser(user);
+        roleService.getAllRoles();
+        userService.saveUser(user);
         return "redirect:/admin";
     }
 
     @DeleteMapping("/{id}/delete")
     public String deleteUser(@PathVariable("id") long id) {
-        userService.deleteUser(id);
+        userService.deleteById(id);
         return "redirect:/admin";
     }
 
-    private void getUserRoles(User user) {
-        user.setRoles(user.getRoles().stream()
-                .map(role -> roleService.getRole(role.getUserRole()))
-                .collect(Collectors.toSet()));
-    }
 }

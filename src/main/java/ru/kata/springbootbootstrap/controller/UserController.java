@@ -1,6 +1,6 @@
-package ru.freeomsk.springbootbootstrap.controller;
+package ru.kata.springbootbootstrap.controller;
 
-import ru.freeomsk.springbootbootstrap.model.User;
+import ru.kata.springbootbootstrap.entity.User;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

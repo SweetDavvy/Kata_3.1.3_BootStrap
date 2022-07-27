@@ -66,7 +66,7 @@
                                     </tr>
                                     <tr th:each="user : ${users}">
                                         <td th:text="${user.id}">id</td>
-                                        <td th:text="${user.name}">name</td>
+                                        <td th:text="${user.username}">name</td>
                                         <td th:text="${user.surname}">surname</td>
                                         <td th:text="${user.age}">age</td>
                                         <td th:text="${user.email}">email</td>
@@ -99,7 +99,7 @@
                                                             <label for="name0"><b>Name</b></label>
                                                             <input th:name="name" th:type="text"
                                                                    class="form-control" id="name0"
-                                                                   th:value="${user.name}"/>
+                                                                   th:value="${user.username}"/>
                                                             <br>
                                                             <label for="surname0"><b>Surname</b></label>
                                                             <input th:name="surname" th:type="text"
@@ -128,8 +128,8 @@
                                                             <br>
                                                             <label for="roles"><b>Role</b></label>
                                                             <select multiple class="form-control form-control-sm" id="roles" name="roles" size="2" required>
-                                                                <option th:each="role: ${roles}" th:value="${role.userRole}" th:selected="${user.roles.contains(role)}">
-                                                                    <th:block th:text="${role.userRole}">
+                                                                <option th:each="role: ${roles}" th:value="${role.role}" th:selected="${user.roles.contains(role)}">
+                                                                    <th:block th:text="${role.role}">
                                                                     </th:block>
                                                                 </option>
                                                             </select>
@@ -169,7 +169,7 @@
                                                             <label for="name1"><b>Name</b></label>
                                                             <input th:name="name" th:type="text"
                                                                    class="form-control"
-                                                                   id="name1" th:value="${user.name}" disabled/>
+                                                                   id="name1" th:value="${user.username}" disabled/>
                                                             <br>
                                                             <label for="surname1"><b>Surname</b></label>
                                                             <input th:name="surname" th:type="text"

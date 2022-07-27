@@ -59,14 +59,14 @@
                                 <tbody>
                                 <tr>
                                     <td th:text="${user.id}"></td>
-                                    <td th:text="${user.name}"></td>
+                                    <td th:text="${user.username}"></td>
                                     <td th:text="${user.surname}"></td>
                                     <td th:text="${user.age}"></td>
                                     <td th:text="${user.email}"></td>
                                     <td th:text="${user.login}"></td>
                                     <td>
                                         <th:block th:each="role: ${user.roles}"
-                                                  th:text="${role.userRole} + ' '">
+                                                  th:text="${role.role} + ' '">
                                         </th:block>
                                     </td>
                                 </tr>
