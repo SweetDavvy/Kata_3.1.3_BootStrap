@@ -1,5 +1,6 @@
 package ru.kata.springbootbootstrap;
 
+import org.springframework.beans.BeansException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -41,7 +42,8 @@ public class SpringBootBootstrapApplication {
             userService.saveUser(newUser);
             userService.saveUser(admin);
 
-        } catch (Exception ignored) {
+        } catch (BeansException e) {
+            throw new RuntimeException(e);
         }
     }
 }
