@@ -1,11 +1,16 @@
 package ru.kata.springbootbootstrap.service;
 
 import ru.kata.springbootbootstrap.entity.Role;
+import ru.kata.springbootbootstrap.entity.User;
+
 import java.util.List;
 
 public interface RoleService {
-    void saveRole(Role role);
-    List<Role> getAllRoles();
+    List<Role> findAllRoles();
 
-    Role getById(Long id);
+    void saveRole(Role role);
+
+    void getUserRoles(User user);
+
+    Role applyRole(Role role);
 }

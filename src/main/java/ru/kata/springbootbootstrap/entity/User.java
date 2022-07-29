@@ -4,6 +4,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -55,14 +56,14 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String name, String surname, int age, String email, String login, String password, Set<Role> roles) {
-        this.username = name;
-        this.surname = surname;
-        this.age = age;
-        this.email = email;
-        this.login = login;
+    public User(String email, String password, Set<Role> roles,
+                String username, String surname, int age) {
+        this.username = username;
         this.password = password;
         this.roles = roles;
+        this.surname = surname;
+        this.email = email;
+        this.age = age;
     }
 
     public Long getId() {

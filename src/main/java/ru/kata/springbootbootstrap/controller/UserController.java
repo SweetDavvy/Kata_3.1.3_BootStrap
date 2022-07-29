@@ -1,24 +1,31 @@
 package ru.kata.springbootbootstrap.controller;
 
-import ru.kata.springbootbootstrap.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.ui.ModelMap;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ru.kata.springbootbootstrap.service.UserService;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/user")
+@PreAuthorize("hasAuthority('USER')")
 public class UserController {
 
-    @GetMapping(value = "login")
-    public String loginPage() {
-        return "users/login";
+    private final UserService userService;
+
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
-    @GetMapping("user")
-    public String showUserInfo(@AuthenticationPrincipal User user, Model model) {
-        model.addAttribute("user", user);
-        return "users/userPage";
+    @GetMapping(value = "")
+    public String getCurrentUser(@AuthenticationPrincipal UserDetails user, ModelMap model) {
+        model.addAttribute("user", userService.findByUsername(user.getUsername()));
+        model.addAttribute("currentuser", user);
+        return "user";
     }
 }
