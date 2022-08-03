@@ -40,9 +40,6 @@ public class User implements UserDetails {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "login")
-    private String login;
-
     @Column(name = "password")
     private String password;
 
@@ -104,14 +101,6 @@ public class User implements UserDetails {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
     }
 
     @Override

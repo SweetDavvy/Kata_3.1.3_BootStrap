@@ -1,9 +1,10 @@
 package ru.kata.springbootbootstrap.service;
 
 import ru.kata.springbootbootstrap.entity.User;
+
 import java.util.List;
 
-public interface UserService {
+public interface UserService{
     void saveUser(User user);
 
     void deleteById(Long id);

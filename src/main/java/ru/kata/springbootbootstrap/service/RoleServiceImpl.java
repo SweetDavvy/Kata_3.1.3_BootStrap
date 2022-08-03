@@ -1,8 +1,8 @@
 package ru.kata.springbootbootstrap.service;
 
-import ru.kata.springbootbootstrap.entity.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.kata.springbootbootstrap.entity.Role;
 import ru.kata.springbootbootstrap.entity.User;
 import ru.kata.springbootbootstrap.repository.RoleRepository;
 
